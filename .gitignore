@@ -1,3 +1,4 @@
+
 *.log
 wp-config.php
 wp-content/advanced-cache.php
@@ -37,4 +38,3 @@ xmlrpc.php
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
-
