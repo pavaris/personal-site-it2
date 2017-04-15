@@ -1,0 +1,481 @@
+/*
+
+Theme Name: Pavairs
+Author: Pavaris Ketavanan
+Version: 1.0.0
+
+*/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{font-size:100%;font:inherit;padding:0;border:0;margin:0;vertical-align:baseline}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}.clear{clear:both}
+.sticky{}.bypostauthor{}.wp-caption{}.wp-caption-text{}.gallery-caption{}.alignright{}.alignleft{}.aligncenter{}.screen-reader-text{clip:rect(1px, 1px, 1px, 1px);position:absolute !important}
+
+$montserrat: 'Montserrat', sans-serif;
+
+*{
+	box-sizing: border-box;
+	font-size: 14px;
+    
+}
+
+body{
+    font-family: $montserrat;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+#container{
+    height: 100vh;
+    width: 100%;
+    position: relative;  
+}
+
+.backgroundCenter{
+    background-position: center;
+    background-size: cover;
+}
+
+.innerContent{
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#header{
+    transition: all ease 300ms;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background-color: rgba(53,62,67,0.9);
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    
+    .innerContent{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    a{
+        text-transform: uppercase;
+    }
+    h3{
+        font-size: 20px;
+    }
+}
+
+.headerLinks{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    a{
+        margin:0px 10px;
+        font-size: 15px;
+    }
+}
+
+/*///////////////////////////
+///    index.php
+///////////////////////////*/
+
+
+
+.home #header{
+    transform: translateY(-100%);
+}
+
+.home #header.active{
+    transform: translateY(0);
+ 
+}
+
+.backgroundfade{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    transition: all ease 300ms;
+    
+
+}
+
+.photographyCont{
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: ease-out width 500ms;
+    z-index: -1;
+
+}
+
+.webCont{
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;  
+    transition: ease-out width 500ms;
+    z-index: -1;
+}
+
+.photographyCont.active, .webCont.active{
+    width: 100%;
+    position: fixed;
+    z-index: 0 !important;
+}
+
+.centerDesc.hide{
+    width: 0;
+//    height: 0;
+    padding: 0;
+}
+
+.centerDesc{
+    position: absolute;
+    height: 150px;
+    width: 400px;
+    padding: 35px;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+    background-color: rgba(53,62,67,0.9);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 600ms all ease;
+    
+    .centerDescInfo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .centerName{
+        color: white;
+        font-size: 28px;
+        font-weight: 100;
+        margin-bottom: 15px;
+
+    }
+    
+    .centerLinks span{
+        font-size: 18px;
+        color: white;
+        font-weight: 100;
+    }
+    
+    .centerLinks a{
+        color: white;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 15px;
+        cursor: pointer;
+        transition: ease all 300ms;
+        padding-bottom: 2px;
+        position: relative;
+        &:hover:after{
+            width: 100%;
+        }
+        &:after{
+            content: '';
+            position: absolute;
+            border-bottom: 0.5px solid white;
+            left: 0;
+            bottom: -1px;
+            width: 0;
+            transition: ease 300ms all;
+        }
+    }
+}
+
+/*///////////////////////////
+///    template-web.php
+///////////////////////////*/
+.webContentContainer.active, .ajaxContentContainer.active .webContentContainer{
+    opacity: 1;
+}
+
+.webContentContainer{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: all ease 300ms;
+    .innerContent{
+        color: white;
+        padding-top: 85vh;
+        padding-bottom: 10px;
+        h2{
+            font-size: 60px;
+            font-weight: 400;
+        }
+    }
+    
+}
+
+.siteContainer{
+    position: relative;
+    overflow: hidden;
+        .siteInfoContainer{
+            width: 300px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(0,0,0,0.6);
+            .siteInfoClose{
+                font-size: 35px;
+                font-weight: 400;
+                position: absolute;
+                left: 10px;
+                top: 0;
+                color: white;
+                line-height: 0.9em;
+                cursor: pointer;
+                transition: ease 200ms all;
+                z-index: 1;
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+            
+        
+            .tasksContainer{
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 100;
+                line-height: 1.4em;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                font-size:  19px;
+            }
+            
+            h5{
+                font-weight: 400;
+                text-align: center;
+                margin-top: 10px;
+            }
+            .visitSite{
+                position: absolute;
+                bottom: 5px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 400;
+                #svgArrow{
+                    transition: 200ms ease all;
+                }
+                &:hover #svgArrow{
+                    transform: translate(3px,-3px);
+                }
+                
+                svg{
+                    margin-left: 5px;
+                    height: 17px;
+                    width: 17px;
+                }
+            }
+            
+        }
+}
+
+.siteListContainer{
+    width: 100%;
+    .siteFade{
+        background-color: rgba(0,0,0,0);
+        transition: all ease 300ms;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .siteContainer:hover .siteFade{
+        background-color: rgba(0,0,0,0);
+    }
+    .site{
+        width: 100%;
+        height: 175px;
+        position: relative;
+        transition: ease all 300ms;
+        cursor: pointer;
+        z-index: 2;
+        
+        h4{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.70);
+            padding: 10px 30px;
+            font-size: 22px;
+            font-weight: 100;
+            text-transform: uppercase;
+        }
+        
+    }
+}
+.siteListContainer:hover .siteFade{
+    background-color: rgba(0,0,0,0.65);
+
+
+}
+
+.site.active{
+    transform: translateX(300px);
+}
+
+.ajaxContentContainer{
+    opacity: 0;
+    transition: ease all 500ms;
+}
+
+.page .ajaxContentContainer, .single .ajaxContentContainer{
+    opacity: 1;
+}
+
+/*///////////////////////////
+///    template-photography.php
+///////////////////////////*/
+.photogCategory{
+    position: fixed;
+    top: 55px;
+    left: 0;
+    background-color: rgba(255,255,255,0.7);
+    height: 40px;
+    width: 300px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-transform: uppercase;
+    transform: translateY(calc(-100% - 55px));
+    transition: ease 300ms all;
+    opacity: 0;
+    border-bottom: 0.5px solid rgba(0,0,0,0.4);
+    border-right: 0.5px solid rgba(0,0,0,0.4);
+    a{
+        color: black;
+        font-weight: 200;
+        transition: ease 400ms all;
+        position: relative;
+        font-size: 14px;
+        &:hover:after{
+            width: 100%;
+        }
+    }
+    a:after{
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        border-bottom: 1px solid black;
+        width: 0;
+        transition: ease 200ms all;
+    }
+}
+
+.photogCategory.active, .page-template .photogCategory, .single .photogCategory{
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+
+.photogCategory a.active:hover:after{
+    width: 0px;
+}
+
+.photogCategory a.active{
+    font-weight: 400;
+}
+
+
+
+
+
+.photogHomeSlideContainer{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    .photogSlide{
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.slick-track, .slick-list,.photogSlideInner{
+    height: 100%;
+}
+
+
+/*///////////////////////////
+///    single.php
+///////////////////////////*/
+.photogImageSlides{
+    padding-top: 125px;
+    width: 100%;
+}
+
+.photogImageSlides img{
+    margin-right: 20px;
+    max-height: 72vh;
+    width: auto;
+    outline: none;
+}
+
+.slideArrows{
+    padding-top: 15px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50px;
+    .slideNext, .slidePrev{
+        cursor: pointer;
+    }
+}
+
+.slideArrows svg{
+    height: 20px;
+    width: 20px;
+}
+
+.slideArrows .slideNext svg{
+    transform: rotate(180deg);
+}
+
+.slick-disabled{
+    opacity: 0.3;
+}
