@@ -15,7 +15,7 @@
     <body <?php body_class(); ?>>
         <div id="wrapper" class="hfeed">
             <header id="header" role="banner">
-                <div class="innerContent">
+                <div class="innerContent innerContentHeader">
                     <a href='<?php echo home_url(); ?>'><h3>Pavaris Ketavanan</h3></a>
                     <div class="headerLinks">
                         <div class="siteMode">

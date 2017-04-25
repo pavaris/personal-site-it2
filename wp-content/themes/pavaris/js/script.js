@@ -10,7 +10,7 @@ $(document).ready(function(){
         
         setTimeout(function(){
             $('body').removeClass('home');
-            $('body').addClass('page');    
+            $('body').addClass('page'); 
             window.history.pushState('', 'Photography', '/photography/');
             get_photog_page();
         },1000);
@@ -56,6 +56,10 @@ function get_web_page(){
             setTimeout(function(){
                 $('.centerDesc').html('');    
                 $('.centerDesc').addClass('hide');  
+                $('.webContentContainer').addClass('active');
+                setTimeout(function(){
+                    $('.webContentContainer').css('overflow','visible');
+                },500);
             },1000);
 
             
@@ -93,3 +97,63 @@ function get_photog_page(){
     });
 }
 
+
+function get_photog_post(postID){
+    console.log('enter ajax');
+  $.ajax({
+        url: ajaxurl, 
+        data: {
+            action: 'do_ajax',
+            fn: 'get_photog_post',
+            postID: postID
+        },
+        success: function(data){
+            $('.ajaxContentContainer').addClass('fade');
+            $('.single-post').removeClass('single-post');
+            $('body').addClass('single');
+            $('body').addClass('page-template');
+            $('.backgroundfade').css('display','none');
+            
+            setTimeout(function(){
+                $('.ajaxContentContainer').html(data);
+                $('.ajaxContentContainer').removeClass('fade');
+            },500);
+//            alert(data);
+        },
+
+    });
+}
+
+
+function bgImageLoader(className){
+    var imgLoaded = 0;
+    var images = $(className).length;
+    $(className).each(function(){
+       var src = $(this).css('background-image');
+       var url = src.match(/\((.*?)\)/)[1].replace(/('|")/g,'');
+
+       var img = new Image();
+       img.onload = function() {
+           console.log('image loaded');
+           imgLoaded++;
+           imgCheck(imgLoaded, images);
+       }
+       img.src = url;
+       if (img.complete) img.onload();
+
+    });
+
+}
+
+function imgCheck(imgLoaded,images){
+   if(imgLoaded == images){
+      console.log('hiding load');
+       $('.loadingScreen').hide();
+       $('.centerDesc svg').fadeOut();
+       setTimeout(function(){
+        $('.centerDescInfo').addClass('active');    
+       },400);
+       
+       
+   }
+}

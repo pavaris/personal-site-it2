@@ -55,6 +55,11 @@ function ajax_function(){
              $output = get_photog_page();
              echo $output;
              break;
+         
+     case 'get_photog_post':
+             $output = get_photog_post($_REQUEST['postID']);
+             echo $output;
+             break;
              
 	default:
 		$output = 'nothing here';
@@ -126,7 +131,7 @@ function get_web_page(){ ?>
     <?php $pageID = $page->ID; ?>
     
    <div class="webContentContainer">
-    <div class="innerContent">
+    <div class="innerContent innerContentHeader">
         <h2>I create websites.</h2>
     </div>
     <div class="siteListContainer">
@@ -171,6 +176,8 @@ function get_web_page(){ ?>
     </div>
 </div>
 <script>
+    bgImageLoader('.site');
+    
     $('.site').click(function(){
         if($(this).hasClass('active')){
             $('.site').removeClass('active');
@@ -209,7 +216,7 @@ function get_photog_page(){ ?>
     ?> 
     
     <div class="webContentContainer">
-        <div class="innerContent">
+        <div class="innerContent innerContentHeader">
             <h2>I create memories.</h2>
         </div>
     </div>
@@ -240,9 +247,10 @@ function get_photog_page(){ ?>
             arrows: false
         });
         
-        $('.photogCategory a').click(function(){
-           alert($(this).attr('post_id')); 
-            
+        $('.photogCategory a').click(function(){ 
+            $('body').removeClass('page');
+            $('body').addClass('single');
+            get_photog_post($(this).attr('post_id'));
         });
         
     </script>
@@ -294,17 +302,44 @@ function get_photog_post($postID){
         </div>
     <?php } ?>
     
+    
     <script>
         $('.photogImageSlides').slick({
-              variableWidth: true,
-                cssEase: 'ease',
+            variableWidth: true,
+            cssEase: 'ease',
             infinite: false,
             useTransform: true,
-            speed: 800,
-
+            speed: 500,
+            centerMode: true,
             prevArrow: $('.slidePrev'),
             nextArrow: $('.slideNext'),
         });
+                
+        
+        var noOfImages = $(".photogImageSlides img").length;
+        console.log(noOfImages);
+        var noLoaded = 0;
+         $('.photogImageSlides img').on('load', function() {
+            console.log('enter load');
+            noLoaded++;
+            if(noOfImages === noLoaded) {
+                console.log('all loaded');
+                $('.photogImageSlides').slick('slickGoTo',0);
+
+       
+                
+                setTimeout(function(){
+                    $('.photogImageSlides').addClass('active');
+                },300);
+            }
+        });
+        
+        
+        
+        $('.photogCategory a').click(function(){ 
+            get_photog_post($(this).attr('post_id'));
+        });
+        
     </script>
 
 <?php    

@@ -7,7 +7,7 @@
 <?php $pageTransitionID = $pageTransition->ID; ?>
 
 <section id="content" role="main">
-<div class="webCont backgroundCenter active" style="background-image: url(<?php echo get_field('web_image',$pageTransitionID)['sizes']['large']; ?>)"></div>
+<div class="webCont backgroundCenter active" style="background-image: url(<?php echo get_field('web_image',$pageTransitionID)['url']; ?>)"></div>
 <div class="backgroundfade"></div>
 <div class="ajaxContentContainer"><?php get_web_page(); ?></div>
 

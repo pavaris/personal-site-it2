@@ -1,6 +1,6 @@
 /*
 
-Theme Name: Pavairs
+Theme Name: Pavaris
 Author: Pavaris Ketavanan
 Version: 1.0.0
 
@@ -44,6 +44,12 @@ a{
     width: 95%;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.innerContentHeader{
+    width: 95%;
+    margin: 0 auto;
+    max-width: none;
 }
 
 #header{
@@ -130,6 +136,12 @@ a{
     z-index: -1;
 }
 
+.webCont, .photographyCont{
+    img{
+        display: none;
+    }
+}
+
 .photographyCont.active, .webCont.active{
     width: 100%;
     position: fixed;
@@ -159,11 +171,20 @@ a{
     align-items: center;
     transition: 600ms all ease;
     
+    svg{
+        height: 100px;
+        width: 100px;
+    }
+    
     .centerDescInfo{
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+    }
+    
+    .centerDescInfo.active{
+        display: flex;
     }
     
     .centerName{
@@ -204,11 +225,21 @@ a{
     }
 }
 
+.centerLinks #homePhotographyLink.active a:after, #homeWebLink.active a:after{
+    width: 100%;
+}
+
 /*///////////////////////////
 ///    template-web.php
 ///////////////////////////*/
 .webContentContainer.active, .ajaxContentContainer.active .webContentContainer{
     opacity: 1;
+     overflow: visible;
+}
+
+.page-template .webContentContainer{
+    opacity: 1;
+    overflow: visible;
 }
 
 .webContentContainer{
@@ -220,6 +251,7 @@ a{
     z-index: 1;
     opacity: 0;
     transition: all ease 300ms;
+    overflow: hidden;
     .innerContent{
         color: white;
         padding-top: 85vh;
@@ -235,6 +267,8 @@ a{
 .siteContainer{
     position: relative;
     overflow: hidden;
+    transform: translateX(100%);
+    transition: 500ms ease all;
         .siteInfoContainer{
             width: 300px;
             height: 100%;
@@ -309,8 +343,13 @@ a{
         }
 }
 
+.webContentContainer.active .siteContainer, .page-template .siteContainer {
+    transform: translateX(0);
+}
+
 .siteListContainer{
     width: 100%;
+    transition: 200ms ease all;
     .siteFade{
         background-color: rgba(0,0,0,0);
         transition: all ease 300ms;
@@ -357,6 +396,7 @@ a{
 .ajaxContentContainer{
     opacity: 0;
     transition: ease all 500ms;
+    overflow: hidden;
 }
 
 .page .ajaxContentContainer, .single .ajaxContentContainer{
@@ -446,11 +486,25 @@ a{
 .photogImageSlides{
     padding-top: 125px;
     width: 100%;
+    
+    .slick-list{
+        transform: translateX(100%) !important;
+        transition: ease 900ms all;
+    }
+}
+
+
+
+.photogImageSlides.active, .single-post .photogImageSlides{
+    .slick-list{
+        transform: translateX(0) !important;
+    }
 }
 
 .photogImageSlides img{
     margin-right: 20px;
     max-height: 72vh;
+    height: auto !important;
     width: auto;
     outline: none;
 }
@@ -459,11 +513,19 @@ a{
     padding-top: 15px;
     margin-left: 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    width: 50px;
+        width: 100%;
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    margin: auto;
+    pointer-events: none;
     .slideNext, .slidePrev{
         cursor: pointer;
+        pointer-events: all;
+        padding: 20px 10px;
+        background-color: rgba(255,255,255,0.8);
     }
 }
 
@@ -477,5 +539,26 @@ a{
 }
 
 .slick-disabled{
-    opacity: 0.3;
+    opacity: 0;
+}
+
+.fade{
+    opacity: 0 !important;
+}
+
+
+
+
+
+
+
+//LOAD
+.loadingScreen{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9;
 }
