@@ -79,11 +79,47 @@ a{
 }
 
 .headerLinks{
-    width: 30%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    
+    .divider{
+    font-size: 20px;
+    font-weight: 100;
+}
+
+    .siteMode{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        margin-right: 30px;
+        a{
+            margin: 0px;
+        }
+        
+        #photoHead{
+            margin-right: 10px;
+        }
+        #webHead{
+            margin-left: 10px;
+        }
+        .underline{
+            position: absolute;
+            width: 130px;
+            height: 2px;
+            border-bottom: 1px solid white;
+            left: -100%;
+            bottom: 0px;
+            transitio: ease all 300ms;
+        }
+        
+    }
+    
+    
     a{
-        margin:0px 10px;
+        margin:0px 30px;
         font-size: 15px;
     }
 }
@@ -91,7 +127,6 @@ a{
 /*///////////////////////////
 ///    index.php
 ///////////////////////////*/
-
 
 
 .home #header{
@@ -234,7 +269,6 @@ a{
 ///////////////////////////*/
 .webContentContainer.active, .ajaxContentContainer.active .webContentContainer{
     opacity: 1;
-     overflow: visible;
 }
 
 .page-template .webContentContainer{
@@ -418,7 +452,7 @@ a{
     justify-content: space-around;
     align-items: center;
     text-transform: uppercase;
-    transform: translateY(calc(-100% - 55px));
+    transform: translateX(-100%);
     transition: ease 300ms all;
     opacity: 0;
     border-bottom: 0.5px solid rgba(0,0,0,0.4);
@@ -549,9 +583,78 @@ a{
 
 
 
+/*///////////////////////////
+///    about page
+///////////////////////////*/
+.aboutPageBg{
+    position: fixed;
+    top: 55px;
+    left: 0;
+    height: calc(100% - 55px);
+    width: 100%;
+    z-index: 12;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    &:before{
+        content: ' ';
+        background-color: rgba(255,255,255,0.8);
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+}
+.aboutPage{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
+.headerImage{
+    margin-top: 30px;
+    height: 300px;
+    width: 700px;
+    background-size: cover;
+    background-position: top center;
 
+}
 
+.iAmContainer{
+    margin-top: 50px;
+    width: 800px;
+    font-size: 40px;
+    font-weight: 400;
+    color: black;
+    .noun{
+        transition: opacity 1s ease-out;
+//        opacity: 0; 
+//        display: none;
+    }
+    .noun.active{
+        display: inline-block;
+        opacity: 1;    
+    }
+    .noun.highlight{
+        background-color: dimgray;
+        color: white;
+    }
+}
+
+.blinker{
+    opacity: 0;
+    font-size: 42px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity: 0}
+    50%{opacity: 1}
+    100%{opacity: 0}
+}
 //LOAD
 .loadingScreen{
     position: absolute;

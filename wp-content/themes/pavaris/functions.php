@@ -199,21 +199,7 @@ function get_web_page(){ ?>
 
 
 function get_photog_page(){ ?>
-    <?php
-       $args = array(
-           'post_type' => 'post',
-       );
-       $photog = new WP_Query($args);
-       if ( $photog->have_posts() ) { ?>
-        <div class="photogCategory">  
-          <?php while ( $photog->have_posts() ) {
-		      $photog->the_post(); ?>
-                <a post_id='<?php echo get_the_ID(); ?>'><?php the_title(); ?></a>
-	       <?php } ?>
-        </div>                 
-       <?php }
 
-    ?> 
     
     <div class="webContentContainer">
         <div class="innerContent innerContentHeader">
@@ -248,9 +234,13 @@ function get_photog_page(){ ?>
         });
         
         $('.photogCategory a').click(function(){ 
-            $('body').removeClass('page');
-            $('body').addClass('single');
-            get_photog_post($(this).attr('post_id'));
+            if(!$(this).hasClass('active')){
+                $('body').removeClass('page');
+                $('body').addClass('single');
+                $('.photogCategory a').removeClass('active');
+                $(this).addClass('active');
+                get_photog_post($(this).attr('post_id'));
+            }
         });
         
     </script>
@@ -309,7 +299,7 @@ function get_photog_post($postID){
             cssEase: 'ease',
             infinite: false,
             useTransform: true,
-            speed: 500,
+            speed: 800,
             centerMode: true,
             prevArrow: $('.slidePrev'),
             nextArrow: $('.slideNext'),
@@ -337,10 +327,95 @@ function get_photog_post($postID){
         
         
         $('.photogCategory a').click(function(){ 
-            get_photog_post($(this).attr('post_id'));
+            if(!$(this).hasClass('active')){
+                get_photog_post($(this).attr('post_id'));
+                $('.photogCategory a').removeClass('active');
+                $(this).addClass('active');
+            }
         });
         
     </script>
 
 <?php    
+}
+
+function get_about(){ ?>
+    <?php $page = get_page_by_title('About'); ?>
+    <?php $pageID = $page->ID; ?>
+       
+    <div class="aboutPageBg" style="background-image:url(<?php echo get_the_post_thumbnail_url($pageID); ?>);">
+        <div class="aboutPage">
+           <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
+               
+               
+               
+               
+           <?php if(have_rows('nouns', $pageID)){ ?>
+                <div class="iAmContainer">
+                      I am 
+                      <?php $nounNum = 0; ?>
+                       <?php while(have_rows('nouns', $pageID)) : the_row(); ?>
+<!--                        <span class="noun" nounNum='<?php echo $nounNum; $nounNum++; ?>'><?php echo the_sub_field('noun', $pageID); ?>.</span>-->
+                    <?php endwhile; ?>
+                    <span class="noun"></span>
+                    <span class='blinker'>|</span>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+      <script>
+          
+          var nouns = ['a photographer.', 'a rock climber.', 'a videographer.', 'a traveler.', 'a swimmer.', 'a web developer.', 'a binge watcher.', 'a food enthusiast.', 'Pavaris.'];
+          
+          $('document').ready(function(){
+              typeOut(nouns[0]);    
+              console.log(nouns[0]);
+              var i = 1;
+              setInterval(function(){
+                  highlightText();
+                  if(i == nouns.length){
+                      i = 0;
+                  }
+                  setTimeout(function(){
+                      removeText();
+                      setTimeout(function(){
+                          typeOut(nouns[i]);    
+                          i++;
+                      },500);
+                      
+                  },1000);
+                  
+                  
+              }, 4000);
+              
+          });
+          
+          
+          
+          
+          
+//        $('.iAmContainer span[nounNum="0"]').addClass('active');
+//        setInterval(function(){
+//            if(i== $('.iAmContainer span').length){
+//                i=0;
+//            }
+//            $('.iAmContainer span.active').removeClass('active');
+//            $('.iAmContainer span[nounNum="'+i+'"]').addClass('active');
+//            i++;
+//        },3000);
+          
+          
+//        $('.iAmContainer span').html(nouns[0]);
+//        setInterval(function(){
+//            if(i == nouns.length + 1){
+//                i = 0;
+////                $('.iAmContainer span').html('Pavaris');    
+//            }
+//                $('.iAmContainer span').html(nouns[i]);
+//            
+//            i++;
+//        },1500);
+          
+    </script>
+<?php
 }

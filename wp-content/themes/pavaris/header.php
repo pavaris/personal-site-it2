@@ -19,11 +19,35 @@
                     <a href='<?php echo home_url(); ?>'><h3>Pavaris Ketavanan</h3></a>
                     <div class="headerLinks">
                         <div class="siteMode">
-                            
+                            <a id="photoHead" class="active">Photographer</a><span class="divider">|</span>
+                            <a id="webHead">Web Developer</a>
+                            <div class="underline"></div>
                         </div>
                         <a>About</a>
                         <a>Contact</a>
                     </div>
                 </div>
+                 <?php
+       $args = array(
+           'post_type' => 'post',
+       );
+       $photog = new WP_Query($args);
+       if ( $photog->have_posts() ) { ?>
+        <div class="photogCategory">  
+          <?php while ( $photog->have_posts() ) {
+		      $photog->the_post(); ?>
+                <a post_id='<?php echo get_the_ID(); ?>'><?php the_title(); ?></a>
+	       <?php } ?>
+        </div>                 
+       <?php }
+
+    ?> 
+           
+           
+           
+           
+           
+           
+           <?php get_about(); ?>
             </header>
             <div id="container">

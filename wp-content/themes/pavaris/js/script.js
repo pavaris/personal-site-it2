@@ -33,6 +33,10 @@ $(document).ready(function(){
     });    
 
     
+    $('.siteMode').hover(function(){
+        
+    });
+    
     
 });
 
@@ -157,3 +161,33 @@ function imgCheck(imgLoaded,images){
        
    }
 }
+
+
+
+function typeOut(noun){
+    var fullString = '';
+    for(var i = 0; i < noun.length; i++){
+        fullString = fullString + noun[i];
+        displayChar(fullString, i);
+    }
+    
+}
+
+function displayChar(fullString, i){
+    setTimeout(function(){
+        $(".noun").html(fullString);
+    },i * 100);
+}
+
+
+function highlightText(){
+    $('.noun').addClass('highlight');
+    $('.blinker').css('visibility','hidden');
+}
+
+function removeText(){
+    $('.noun').html('');
+    $('.noun').removeClass('highlight');
+    $('.blinker').css('visibility','visible');
+}
+
