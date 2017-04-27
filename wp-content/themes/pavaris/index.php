@@ -143,3 +143,4 @@
 <script>
     bgImageLoader('.backgroundCenter');
 </script>
+<?php get_footer(); ?>

@@ -345,7 +345,8 @@ function get_about(){ ?>
        
     <div class="aboutPageBg" style="background-image:url(<?php echo get_the_post_thumbnail_url($pageID); ?>);">
         <div class="aboutPage">
-           <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
+          <div class="close">×</div> 
+          <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
                
                
                
@@ -365,31 +366,7 @@ function get_about(){ ?>
     </div>
       <script>
           
-          var nouns = ['a photographer.', 'a rock climber.', 'a videographer.', 'a traveler.', 'a swimmer.', 'a web developer.', 'a binge watcher.', 'a food enthusiast.', 'Pavaris.'];
-          
-          $('document').ready(function(){
-              typeOut(nouns[0]);    
-              console.log(nouns[0]);
-              var i = 1;
-              setInterval(function(){
-                  highlightText();
-                  if(i == nouns.length){
-                      i = 0;
-                  }
-                  setTimeout(function(){
-                      removeText();
-                      setTimeout(function(){
-                          typeOut(nouns[i]);    
-                          i++;
-                      },500);
-                      
-                  },1000);
-                  
-                  
-              }, 4000);
-              
-          });
-          
+         
           
           
           

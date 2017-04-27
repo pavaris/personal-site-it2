@@ -23,8 +23,8 @@
                             <a id="webHead">Web Developer</a>
                             <div class="underline"></div>
                         </div>
-                        <a>About</a>
-                        <a>Contact</a>
+                        <a id='aboutPage'>About</a>
+                        <a id='contactPage'>Contact</a>
                     </div>
                 </div>
                  <?php
@@ -46,8 +46,5 @@
            
            
            
-           
-           
-           <?php get_about(); ?>
             </header>
             <div id="container">

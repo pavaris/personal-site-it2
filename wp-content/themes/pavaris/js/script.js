@@ -38,6 +38,25 @@ $(document).ready(function(){
     });
     
     
+    $('#aboutPage').click(function(){
+        $(".aboutPageBg").toggleClass('active');
+        if($('.aboutPageBg').hasClass('active')){
+            setTimeout(function(){
+                startTypeOut();
+            },200)
+            
+        }else{
+            clearInterval(typeInterval);
+            removeText();
+        }
+    });
+    
+    $('.aboutPage .close').click(function(){
+        clearInterval(typeInterval);
+        removeText();
+        $(".aboutPageBg").removeClass('active');
+    });
+    
 });
 
 
@@ -164,6 +183,34 @@ function imgCheck(imgLoaded,images){
 
 
 
+var typeInterval;
+function startTypeOut(){
+     var nouns = ['a photographer.', 'a rock climber.', 'a videographer.', 'a traveler.', 'a swimmer.', 'a web developer.', 'a binge watcher.', 'a food enthusiast.', 'Pavaris.'];
+          
+      typeOut(nouns[0]);    
+      console.log(nouns[0]);
+      var i = 1;
+      typeInterval = setInterval(function(){
+          highlightText();
+          if(i == nouns.length){
+              i = 0;
+          }
+          setTimeout(function(){
+              removeText();
+              setTimeout(function(){
+                  typeOut(nouns[i]);    
+                  i++;
+              },300);
+
+          },900);
+
+
+      }, 3900);
+
+}
+
+
+
 function typeOut(noun){
     var fullString = '';
     for(var i = 0; i < noun.length; i++){
@@ -176,7 +223,7 @@ function typeOut(noun){
 function displayChar(fullString, i){
     setTimeout(function(){
         $(".noun").html(fullString);
-    },i * 100);
+    },i * 75);
 }
 
 
