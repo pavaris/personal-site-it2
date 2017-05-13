@@ -131,7 +131,7 @@ function get_web_page(){ ?>
     <?php $pageID = $page->ID; ?>
     
    <div class="webContentContainer">
-    <div class="innerContent innerContentHeader">
+    <div class="innerContent page-caption">
         <h2>I create websites.</h2>
     </div>
     <div class="siteListContainer">
@@ -202,7 +202,7 @@ function get_photog_page(){ ?>
 
     
     <div class="webContentContainer">
-        <div class="innerContent innerContentHeader">
+        <div class="innerContent page-caption">
             <h2>I create memories.</h2>
         </div>
     </div>
@@ -340,30 +340,7 @@ function get_photog_post($postID){
 }
 
 function get_about(){ ?>
-    <?php $page = get_page_by_title('About'); ?>
-    <?php $pageID = $page->ID; ?>
-       
-    <div class="aboutPageBg" style="background-image:url(<?php echo get_the_post_thumbnail_url($pageID); ?>);">
-        <div class="aboutPage">
-          <div class="close">×</div> 
-          <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
-               
-               
-               
-               
-           <?php if(have_rows('nouns', $pageID)){ ?>
-                <div class="iAmContainer">
-                      I am 
-                      <?php $nounNum = 0; ?>
-                       <?php while(have_rows('nouns', $pageID)) : the_row(); ?>
-<!--                        <span class="noun" nounNum='<?php echo $nounNum; $nounNum++; ?>'><?php echo the_sub_field('noun', $pageID); ?>.</span>-->
-                    <?php endwhile; ?>
-                    <span class="noun"></span>
-                    <span class='blinker'>|</span>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
+   
       <script>
           
          

@@ -11,6 +11,7 @@ $(document).ready(function(){
         setTimeout(function(){
             $('body').removeClass('home');
             $('body').addClass('page'); 
+            $('body').addClass('page-template-template-photography'); 
             window.history.pushState('', 'Photography', '/photography/');
             get_photog_page();
         },1000);
@@ -37,25 +38,28 @@ $(document).ready(function(){
         
     });
     
-    
-    $('#aboutPage').click(function(){
-        $(".aboutPageBg").toggleClass('active');
-        if($('.aboutPageBg').hasClass('active')){
-            setTimeout(function(){
-                startTypeOut();
-            },200)
-            
-        }else{
-            clearInterval(typeInterval);
-            removeText();
-        }
-    });
+//    
+//    $('#aboutPage').click(function(){
+//        $(".aboutPageBg").toggleClass('active');
+//        if($('.aboutPageBg').hasClass('active')){
+//            setTimeout(function(){
+//                startTypeOut();
+//            },200)
+//            
+//        }else{
+//            clearInterval(typeInterval);
+//            removeText();
+//        }
+//    });
     
     $('.aboutPage .close').click(function(){
         clearInterval(typeInterval);
         removeText();
         $(".aboutPageBg").removeClass('active');
     });
+   
+    
+
     
 });
 
@@ -82,6 +86,10 @@ function get_web_page(){
                 $('.webContentContainer').addClass('active');
                 setTimeout(function(){
                     $('.webContentContainer').css('overflow','visible');
+                    setTimeout(function(){
+                        $('html, body').animate({scrollTop: $('.siteListContainer').offset().top - 300},600);
+                    },500);
+                    
                 },500);
             },1000);
 

@@ -23,7 +23,7 @@
                             <a id="webHead">Web Developer</a>
                             <div class="underline"></div>
                         </div>
-                        <a id='aboutPage'>About</a>
+                        <a id='aboutPage' href="<?php echo home_url(); ?>/about" >About</a>
                         <a id='contactPage'>Contact</a>
                     </div>
                 </div>
@@ -32,12 +32,15 @@
            'post_type' => 'post',
        );
        $photog = new WP_Query($args);
-       if ( $photog->have_posts() ) { ?>
+       if ( $photog->have_posts() ) { 
+                $link = 0;
+                ?>
         <div class="photogCategory">  
           <?php while ( $photog->have_posts() ) {
 		      $photog->the_post(); ?>
-                <a post_id='<?php echo get_the_ID(); ?>'><?php the_title(); ?></a>
+                <a link='<?php echo $link;  $link++; ?>' post_id='<?php echo get_the_ID(); ?>'><?php the_title(); ?></a>
 	       <?php } ?>
+	           <div class="categoryHover"></div>
         </div>                 
        <?php }
 

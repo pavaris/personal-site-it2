@@ -50,7 +50,10 @@ a{
     width: 95%;
     margin: 0 auto;
     max-width: none;
+    
 }
+
+
 
 #header{
     transition: all ease 300ms;
@@ -288,20 +291,25 @@ a{
     overflow: hidden;
     .innerContent{
         color: white;
-        padding-top: 85vh;
-        padding-bottom: 10px;
         h2{
             font-size: 60px;
             font-weight: 400;
+            position: absolute;
+            bottom: 25px;
+            left: 60px;
         }
     }
     
 }
 
+.page-caption{
+    height: 100%;
+}
+
 .siteContainer{
     position: relative;
     overflow: hidden;
-    transform: translateX(100%);
+//    transform: translateX(100%);
     transition: 500ms ease all;
         .siteInfoContainer{
             width: 300px;
@@ -377,6 +385,8 @@ a{
         }
 }
 
+
+
 .webContentContainer.active .siteContainer, .page-template .siteContainer {
     transform: translateX(0);
 }
@@ -384,6 +394,7 @@ a{
 .siteListContainer{
     width: 100%;
     transition: 200ms ease all;
+    margin-top: 20px;
     .siteFade{
         background-color: rgba(0,0,0,0);
         transition: all ease 300ms;
@@ -418,7 +429,7 @@ a{
     }
 }
 .siteListContainer:hover .siteFade{
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,0.5);
 
 
 }
@@ -458,39 +469,59 @@ a{
     border-bottom: 0.5px solid rgba(0,0,0,0.4);
     border-right: 0.5px solid rgba(0,0,0,0.4);
     a{
+        overflow: hidden;
         color: black;
         font-weight: 200;
         transition: ease 400ms all;
         position: relative;
         font-size: 14px;
-        &:hover:after{
-            width: 100%;
+        display: flex;
+        height: 100%;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        transition: ease 200ms all;
+        border: 5px solid transparent;
+        &:hover{
+            border: 5px solid gray;
+        }
+         &:after{
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background-color: gray;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transform: scale(0);
+            transition: 500ms ease transform;
+            transform-origin: center;
+             z-index: -1;
+             opacity: 0;
+
+        }
+        &.active{
+            border: 5px solid gray;
+            color: white;
+            &:after{
+                opacity: 1;
+                transform: scale(30);
+            }
         }
     }
-    a:after{
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        border-bottom: 1px solid black;
-        width: 0;
-        transition: ease 200ms all;
-    }
+    
+
 }
 
-.photogCategory.active, .page-template .photogCategory, .single .photogCategory{
+.photogCategory.active, .page-template-template-photography .photogCategory, .single .photogCategory{
     transform: translateY(0px);
     opacity: 1;
 }
 
-
-.photogCategory a.active:hover:after{
-    width: 0px;
-}
-
-.photogCategory a.active{
-    font-weight: 400;
-}
 
 
 
@@ -587,16 +618,15 @@ a{
 ///    about page
 ///////////////////////////*/
 .aboutPageBg{
-    position: fixed;
-    top: 100%;
-    left: 0;
-    height: calc(100% - 55px);
+    height: 100vh;
+    padding-top: 100px;
     width: 100%;
-    z-index: 12;
+    z-index: 0;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom center;
     transition: 400ms all ease;
+    position: relative;
     &:before{
         content: ' ';
         background-color: rgba(255,255,255,0.8);
@@ -655,6 +685,15 @@ a{
         background-color: dimgray;
         color: white;
     }
+}
+
+.aboutMe{
+    margin-top: 30px;
+    width: 800px;
+    color: black;
+    font-size: 22px;
+    font-weight: 200;
+    line-height: 1.3em;
 }
 
 .blinker{
