@@ -23,8 +23,8 @@
                             <a id="webHead">Web Developer</a>
                             <div class="underline"></div>
                         </div>
-                        <a id='aboutPage' href="<?php echo home_url(); ?>/about" >About</a>
-                        <a id='contactPage'>Contact</a>
+                        <a id='aboutPage' href="<?php echo home_url(); ?>/about" class='<?php  ?>'>About</a>
+                        <a id='contactPage' href="<?php echo home_url(); ?>/contact">Contact</a>
                     </div>
                 </div>
                  <?php

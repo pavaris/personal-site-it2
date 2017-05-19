@@ -62,7 +62,7 @@ a{
     left: 0;
     width: 100%;
     height: 55px;
-    background-color: rgba(53,62,67,0.9);
+    background-color: rgba(53,62,67,0.75);
     z-index: 11;
     display: flex;
     align-items: center;
@@ -124,6 +124,21 @@ a{
     a{
         margin:0px 30px;
         font-size: 15px;
+        position: relative;
+        &:hover:after{
+            bottom: -3px;
+            opacity: 1;
+        }
+        &:after{
+            content: '';
+            position: absolute;
+            border-bottom: 0.25px solid white;
+            left: 0;
+            bottom: -5px;
+            opacity: 0;
+            width: 100%;
+            transition: ease 300ms all;
+        }
     }
 }
 
@@ -202,7 +217,7 @@ a{
     right: 0;
     margin: auto;
     z-index: 10;
-    background-color: rgba(53,62,67,0.9);
+    background-color: rgba(53,62,67,0.75);
     text-transform: uppercase;
     display: flex;
     justify-content: center;
@@ -249,15 +264,17 @@ a{
         padding-bottom: 2px;
         position: relative;
         &:hover:after{
-            width: 100%;
+            bottom: -1px;
+            opacity: 1;
         }
         &:after{
             content: '';
             position: absolute;
-            border-bottom: 0.5px solid white;
+            border-bottom: 0.25px solid white;
             left: 0;
-            bottom: -1px;
-            width: 0;
+            bottom: -5px;
+            opacity: 0;
+            width: 100%;
             transition: ease 300ms all;
         }
     }
@@ -663,6 +680,9 @@ a{
     width: 700px;
     background-size: cover;
     background-position: top center;
+    position: relative;
+    box-shadow: 15px 15px dimgray;
+    border: 1px solid black;
 
 }
 
@@ -718,4 +738,69 @@ a{
     height: 100%;
     background-color: white;
     z-index: 9;
+}
+
+
+
+/*///////////////////////////
+///    tempate-contact.php
+///////////////////////////*/
+.narrowInnerContent{
+    width: 85%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.contactHeader{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    max-width: 590px;
+    padding: 20px;
+    box-shadow: 15px 15px dimgray;
+}
+
+.contactImage{
+    height: 135px;
+    width: 135px;
+    border-radius: 135px;
+    margin-right: 40px;
+}
+
+.contactText{
+    color: black;
+    .textheader{
+        font-size: 25px;
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+    .emailHeader{
+        font-weight: 200;
+        font-size: 15px;
+        color: black;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+}
+
+.socialLinks{
+    display: flex;
+    
+    a{
+        margin-right: 15px;
+        align-items: flex-end;
+        display: flex;
+    }
+    svg{
+        height: 20px;
+        width: 20px;
+    }
+    .youtube{
+        align-items: center;
+        
+        svg{
+            height: 20px;
+            width: 33px;
+        }
+    } 
 }

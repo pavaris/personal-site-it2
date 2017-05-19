@@ -17,7 +17,7 @@
 
  <?php $page = get_page_by_title('About'); ?>
     <?php $pageID = $page->ID; ?>
-    <div class="aboutPageBg" style="background-image:url(<?php echo get_the_post_thumbnail_url($pageID); ?>);">
+    <div class="aboutPageBg" >
         <div class="aboutPage">
 <!--          <div class="close">×</div> -->
           <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
