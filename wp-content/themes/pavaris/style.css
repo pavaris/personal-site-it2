@@ -733,20 +733,20 @@ a {
 
 /* line 753, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
 .contactHeader {
-  margin-top: 100px;
+  margin: 100px auto 0 auto;
   display: flex;
   align-items: center;
   border: 1px solid black;
-  max-width: 590px;
-  padding: 20px;
+  max-width: 520px;
+  padding: 15px;
   box-shadow: 15px 15px dimgray; }
 
 /* line 763, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
 .contactImage {
-  height: 135px;
-  width: 135px;
-  border-radius: 135px;
-  margin-right: 40px; }
+  height: 105px;
+  width: 105px;
+  border-radius: 105px;
+  margin-right: 25px; }
 
 /* line 770, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
 .contactText {
@@ -783,5 +783,60 @@ a {
     .socialLinks .youtube svg {
       height: 20px;
       width: 33px; }
+
+/* line 808, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+.form {
+  margin: 60px auto 0 auto;
+  color: black;
+  max-width: 650px;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase; }
+  /* line 816, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form h5 {
+    line-height: 1.3em; }
+  /* line 819, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form input {
+    margin: 10px 0 15px 0;
+    padding-bottom: 10px;
+    width: 100%;
+    font-size: 30px;
+    border: 0;
+    outline: none;
+    font-weight: 400;
+    border-bottom: 1px solid transparent;
+    font-family: "Montserrat", sans-serif;
+    transition: ease 300ms all;
+    opacity: 0.5;
+    display: none; }
+  /* line 834, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form input:focus {
+    opacity: 1;
+    border-bottom: 1px solid black; }
+  /* line 839, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form input.inactive {
+    border-bottom: 1px solid transparent;
+    color: black;
+    cursor: text; }
+  /* line 844, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form .formCTA {
+    font-size: 14px;
+    text-transform: lowercase;
+    font-weight: 300;
+    display: none; }
+  /* line 856, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form .errorMsg {
+    opacity: 0;
+    color: red;
+    font-size: 14px;
+    transition: ease 500ms all;
+    margin-top: 10px;
+    text-transform: lowercase; }
+  /* line 864, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form .errorMsg.active {
+    opacity: 1; }
+  /* line 868, /Users/Tommy/Design Files/Web/pavaris-it2/wp-content/themes/pavaris/style.scss */
+  .form .return {
+    margin-top: 20px; }
 
 /*# sourceMappingURL=style.css.map */

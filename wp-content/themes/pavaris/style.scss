@@ -751,20 +751,20 @@ a{
     margin: 0 auto;
 }
 .contactHeader{
-    margin-top: 100px;
+    margin: 100px auto 0 auto;
     display: flex;
     align-items: center;
     border: 1px solid black;
-    max-width: 590px;
-    padding: 20px;
+    max-width: 520px;
+    padding: 15px;
     box-shadow: 15px 15px dimgray;
 }
 
 .contactImage{
-    height: 135px;
-    width: 135px;
-    border-radius: 135px;
-    margin-right: 40px;
+    height: 105px;
+    width: 105px;
+    border-radius: 105px;
+    margin-right: 25px;
 }
 
 .contactText{
@@ -803,4 +803,69 @@ a{
             width: 33px;
         }
     } 
+}
+
+.form{
+    margin: 60px auto 0 auto;
+    color: black;
+//    text-align: center;
+    max-width: 650px;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    h5{
+        line-height: 1.3em;
+    }
+    input{
+        margin: 10px 0 15px 0;
+        padding-bottom: 10px;
+        width: 100%;
+//        text-align: center;
+        font-size: 30px;
+        border: 0;
+        outline: none;
+        font-weight: 400;
+        border-bottom: 1px solid transparent;
+        font-family: $montserrat;
+        transition: ease 300ms all;
+        opacity: 0.5;
+        display: none;
+    }
+    input:focus{
+        opacity: 1;
+        border-bottom: 1px solid black;
+    }
+    
+    input.inactive{
+        border-bottom: 1px solid transparent;
+        color: black;
+        cursor:text;
+    }
+    .formCTA{
+        font-size: 14px;
+        text-transform: lowercase;
+        font-weight: 300;
+//        opacity: 0;
+        display: none;
+
+
+    }
+    .formCTA.active{
+
+    }
+    .errorMsg{
+        opacity: 0;
+        color: red;
+        font-size: 14px;
+        transition: ease 500ms all;
+        margin-top: 10px;
+        text-transform: lowercase;
+    }
+    .errorMsg.active{
+        opacity: 1;
+    }
+    
+    .return{
+        margin-top: 20px;
+    }
 }

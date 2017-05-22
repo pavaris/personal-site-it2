@@ -59,9 +59,14 @@ $(document).ready(function(){
     });
    
     
-
+    
+    var formName='';
+    var formEmail='';
+    var formMessage='';
+        
     
 });
+
 
 
 function get_web_page(){
@@ -219,19 +224,19 @@ function startTypeOut(){
 
 
 
-function typeOut(noun){
+function typeOut(noun, speed = 75, loc = $('.noun')){
     var fullString = '';
     for(var i = 0; i < noun.length; i++){
         fullString = fullString + noun[i];
-        displayChar(fullString, i);
+        displayChar(fullString, i, speed, loc);
     }
     
 }
 
-function displayChar(fullString, i){
+function displayChar(fullString, i, speed = 75, loc = $('.noun')){
     setTimeout(function(){
-        $(".noun").html(fullString);
-    },i * 75);
+        loc.html(fullString);
+    },i * speed);
 }
 
 
@@ -246,3 +251,11 @@ function removeText(){
     $('.blinker').css('visibility','visible');
 }
 
+function isValid(str){
+    return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?@.]/g.test(str);
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}

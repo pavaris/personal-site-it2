@@ -26,6 +26,9 @@ function blankslate_load_scripts(){
     wp_register_script( 'slick', get_template_directory_uri()."/js/slick/slick.js");
 	wp_enqueue_script("slick");
     
+    wp_register_script( 'validation', get_template_directory_uri()."/js/jquery.validate.min.js");
+	wp_enqueue_script("validation");
+    
     wp_enqueue_style( 'slick-style', get_template_directory_uri()."/js/slick/slick.css");
 }
 

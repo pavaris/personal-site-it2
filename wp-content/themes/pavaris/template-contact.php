@@ -92,8 +92,140 @@
             </div>
         </div>
     </div>
+    
+    <div class="form ">
+        <form action="" class="">
+            <div class="inputs">
+                <h5 class="namePrompt noun"></h5>
+                <input type="text" id="name-input">
+                <h5 class="return formName"></h5>
+
+                <input type="email" id="email-input">
+                <h5 class="return formEmail"></h5>
+           </div>
+       </form>
+        <h6 class='formCTA'>(press enter to continue)</h6>
+        <h6 class='errorMsg'>That's not a valid input, please try again.</h6>
+        
+    </div>
+    
+    
 </div>
 
 <?php endwhile; endif; ?>
 </section>
+
+<script>
+
+    $(document).ready(function(){
+        
+        var stateObj = {
+            current: '',
+            prev: '',
+            next: 'initial'
+        }
+        formStates(stateObj);
+    });
+    
+    function formStates(stateObj){
+        console.log('enter formStates');
+        console.log(stateObj.next);
+        $('.formCTA').hide();
+        switch(stateObj.next){
+            case 'initial':
+                console.log('entering initial');
+                stateObj.current = 'initial';
+                stateObj.next = 'email';
+                initialForm(stateObj);
+                break;
+            
+            case 'email':
+                stateObj.prev = 'initial';
+                stateObj.current = 'email';
+                stateObj.next = 'message';
+                emailForm(stateObj);
+                break;
+            case 'message':
+                stateObj.prev = 'email';
+                stateObj.current = 'message';
+                stateObj.next = '';
+                messageForm(stateObj);
+        }
+    }
+    
+    
+    function initialForm(stateObj){
+        console.log('initial begin');
+        $('#name-input').show();
+        $('.form #name-input').focus();
+            typeOut("Oh hi there! What's your name?", 30);
+           $(document).keypress(function (e) {
+                $('.formCTA').fadeIn();
+                if (e.which == 13) {
+                    event.preventDefault();
+
+                    //check if no symbols and if not empty
+
+                    if(isValid($('#name-input').val()) && $('#name-input').val()){
+                        $('.errorMsg').removeClass('active');
+                        formName = $('#name-input').val();
+                        var firstName = formName.split(' ');
+                        
+                        $('#name-input').blur();
+                        setTimeout(function(){
+                            typeOut('Hey ' + firstName[0] + '! What email should I respond to?', 30, $('.return.formName'));
+                            $(document).unbind();
+                            formStates(stateObj);
+
+                        },200);
+                    }
+                    else{
+                        console.log('invalid');
+                        $('.errorMsg').addClass('active');
+
+                    }
+                }
+           });
+
+    }
+    
+    
+    function emailForm(stateObj){
+        console.log('email begin');
+        $('#email-input').show();
+        $('.form #email-input').focus();
+         
+        $(document).keypress(function (e) {
+           $('.formCTA').fadeIn();
+        
+            if (e.which == 13) {
+                    event.preventDefault();
+
+                    //check if no symbols and if not empty
+
+                    if(validateEmail($('#email-input').val()) && $('#email-input').val()){
+                        $('.errorMsg').removeClass('active');
+                        formEmail = $('#email-input').val();
+
+                        $('#email-input').blur();
+                        setTimeout(function(){
+                            typeOut('Awesome. What do you wanna talk about?', 30, $('.return.formEmail'));
+                            formStates(stateObj);
+
+                        },200);
+                    }
+                    else{
+                        console.log('invalid');
+                        $('.errorMsg').addClass('active');
+
+                    }
+                }
+        });
+
+    }
+    function messageForm(stateObj){
+
+    }
+</script>
+
 <?php get_footer(); ?>
