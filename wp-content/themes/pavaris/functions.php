@@ -258,18 +258,30 @@ function get_photog_post($postID){
        );
        $photog = new WP_Query($args);
        if ( $photog->have_posts() ) { ?>
-            <div class="photogCategory">  
-              <?php while ( $photog->have_posts() ) {
-                  $photog->the_post(); ?>
-                    <a post_id='<?php echo get_the_ID(); ?>' class="<?php if(get_the_ID() == $postID){ echo 'active'; } ?>"><?php the_title(); ?></a>
-               <?php } ?>
-            </div>                 
+              
 
         <div class="photogImageSlides">        
             <?php while(have_rows('images', $postID)) : the_row(); ?>
-                <img src="<?php echo get_sub_field('image', $postID)['sizes']['large']; ?>" alt="">
+                <div class="imageContainer">
+                    <img src="<?php echo get_sub_field('image', $postID)['sizes']['large']; ?>" alt="">
+<!--                    <div class="openScreen">+</div>-->
+                </div>
 
             <?php endwhile; ?>
+        </div>
+        <div class="fullScreenContainer">
+            <div class="closeFullScreen">×</div>
+            <div class="slickContainer">
+                <div class="fullScreenImages">
+                       <?php while(have_rows('images', $postID)) : the_row(); ?>
+                        <div class="fullImageContainer">
+                            <div class="fullImage">
+                                <img src="<?php echo get_sub_field('image', $postID)['sizes']['large']; ?>" class="fullScreenImage" alt="">
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
         </div>
         <div class="slideArrows">
             <div class="slidePrev">
@@ -297,6 +309,8 @@ function get_photog_post($postID){
     
     
     <script>
+        $(window).scrollTop(0);
+
         $('.photogImageSlides').slick({
             variableWidth: true,
             cssEase: 'ease',
@@ -306,8 +320,19 @@ function get_photog_post($postID){
             centerMode: true,
             prevArrow: $('.slidePrev'),
             nextArrow: $('.slideNext'),
+            asNavFor: '.fullScreenImages',
+          focusOnSelect: true
+
         });
-                
+        
+        $('.fullScreenImages').slick({
+           slidesToShow: 1,
+            slidesToScroll: 1,
+            fade: true,
+            asNavFor: '.fullScreenImages',
+            arrows: false,
+            centerMode: true,
+        });
         
         var noOfImages = $(".photogImageSlides img").length;
         console.log(noOfImages);
@@ -337,6 +362,40 @@ function get_photog_post($postID){
             }
         });
         
+        
+        $('.imageContainer .openScreen').click(function(){
+            $('.fullScreenContainer').addClass('active');
+        });
+        
+        $('.closeFullScreen').click(function(){
+            $('.fullScreenContainer').removeClass('active');
+        });
+        
+        if($(window).width() < 767){
+            $('.photogImageSlides').slick('unslick');
+        }
+               
+        $(window).resize(function(){
+            if($(window).width() < 767){
+                $('.photogImageSlides').slick('unslick');
+                console.log('close');
+            }
+            else{
+                $('.photogImageSlides').slick({
+                    variableWidth: true,
+                    cssEase: 'ease',
+                    infinite: false,
+                    useTransform: true,
+                    speed: 800,
+                    centerMode: true,
+                    prevArrow: $('.slidePrev'),
+                    nextArrow: $('.slideNext'),
+                    asNavFor: '.fullScreenImages',
+                  focusOnSelect: true
+
+                });
+            }
+        });
     </script>
 
 <?php    

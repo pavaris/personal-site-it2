@@ -98,18 +98,23 @@
             <div class="inputs">
                 <h5 class="namePrompt noun"></h5>
                 <input type="text" id="name-input">
+                <h6 class='formCTA enter1'>(press enter to continue)</h6>
                 <h5 class="return formName"></h5>
 
                 <input type="email" id="email-input">
                 <h5 class="return formEmail"></h5>
+                <h6 class='formCTA enter2'>(press enter to continue)</h6>
+                
+                <input type='text' id="message-input" maxlength="300">
+                <h5 class="return formMessage"></h5>
            </div>
        </form>
-        <h6 class='formCTA'>(press enter to continue)</h6>
         <h6 class='errorMsg'>That's not a valid input, please try again.</h6>
-        
+        <div class="submit">Submit</div>
+
     </div>
     
-    
+    <?php echo do_shortcode('[contact-form-7 id="121" title="form"]'); ?>
 </div>
 
 <?php endwhile; endif; ?>
@@ -117,17 +122,23 @@
 
 <script>
 
+    var stateObj = {
+        current: '',
+        prev: '',
+        next: 'initial'
+    }
+    
+    var formName='';
+    var formEmail='';
+    var formMessage='';
+    
     $(document).ready(function(){
         
-        var stateObj = {
-            current: '',
-            prev: '',
-            next: 'initial'
-        }
+
         formStates(stateObj);
     });
     
-    function formStates(stateObj){
+    function formStates(){
         console.log('enter formStates');
         console.log(stateObj.next);
         $('.formCTA').hide();
@@ -136,20 +147,30 @@
                 console.log('entering initial');
                 stateObj.current = 'initial';
                 stateObj.next = 'email';
-                initialForm(stateObj);
+                initialForm();
                 break;
             
             case 'email':
                 stateObj.prev = 'initial';
                 stateObj.current = 'email';
                 stateObj.next = 'message';
-                emailForm(stateObj);
+                $('html,body').animate({
+                    scrollTop: $("#name-input").offset().top - 200
+                },1000);
+                emailForm();
                 break;
             case 'message':
                 stateObj.prev = 'email';
                 stateObj.current = 'message';
-                stateObj.next = '';
-                messageForm(stateObj);
+                stateObj.next = 'submit';
+                $('html,body').animate({
+                    scrollTop: $("#name-input").offset().top 
+                },1000);
+                messageForm();
+                break;
+            case 'submit':
+                submission();
+                break;
         }
     }
     
@@ -158,9 +179,12 @@
         console.log('initial begin');
         $('#name-input').show();
         $('.form #name-input').focus();
+        $('.form #name-input').focusout(function(){
+            $('.form #name-input').focus();
+        });
             typeOut("Oh hi there! What's your name?", 30);
+            $('.formCTA.enter1').fadeIn();
            $(document).keypress(function (e) {
-                $('.formCTA').fadeIn();
                 if (e.which == 13) {
                     event.preventDefault();
 
@@ -175,7 +199,8 @@
                         setTimeout(function(){
                             typeOut('Hey ' + firstName[0] + '! What email should I respond to?', 30, $('.return.formName'));
                             $(document).unbind();
-                            formStates(stateObj);
+                            $('.form #name-input').unbind();
+                            formStates();
 
                         },200);
                     }
@@ -194,9 +219,9 @@
         console.log('email begin');
         $('#email-input').show();
         $('.form #email-input').focus();
-         
+       $('.formCTA.enter2').fadeIn();
+
         $(document).keypress(function (e) {
-           $('.formCTA').fadeIn();
         
             if (e.which == 13) {
                     event.preventDefault();
@@ -210,7 +235,9 @@
                         $('#email-input').blur();
                         setTimeout(function(){
                             typeOut('Awesome. What do you wanna talk about?', 30, $('.return.formEmail'));
-                            formStates(stateObj);
+                            $(document).unbind();
+                            $('.form #email-input').unbind();
+                            formStates();
 
                         },200);
                     }
@@ -223,9 +250,51 @@
         });
 
     }
-    function messageForm(stateObj){
-
+    function messageForm(){
+        //fix form focus
+        console.log('textarea begin');
+        $('#message-input').show();
+        $('.submit').css('display','flex');
+        $('#message-input').focus();
+        formStates();
+   
     }
+    
+    function submission(){
+        console.log('enter submission');
+        $('.wpcf7').on('wpcf7:submit', function(event){
+            console.log('submitted successfully');
+            $('.submit').addClass('active');
+            $('.submit').html('SENT!');
+        });
+        $('.wpcf7').on('wpcf7:invalid', function(event){
+           console.log('form no good');
+           $('.errorMsg').addClass('active');
+        });
+        
+        
+        $('.submit').click(function(){
+            console.log('begin submission');
+            formEmail = $('#email-input').val();
+            formName = $('#name-input').val();
+            formMessage = $('#message-input').val();    
+            if(!isValid(formName) || !validateEmail(formEmail) || !formMessage){
+                $('.errorMsg').addClass('active');
+            }
+            else{
+                $('.errorMsg').removeClass('active');
+                $('input[name="your-name"]').val(formName);
+                $('input[name="your-email"]').val(formEmail);
+                $('textarea').val(formMessage);
+                setTimeout(function(){
+                    $('.wpcf7-form').submit();
+                },300);
+            }
+        })
+        
+        
+    }
+    
 </script>
 
 <?php get_footer(); ?>

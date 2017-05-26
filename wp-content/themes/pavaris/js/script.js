@@ -58,11 +58,7 @@ $(document).ready(function(){
         $(".aboutPageBg").removeClass('active');
     });
    
-    
-    
-    var formName='';
-    var formEmail='';
-    var formMessage='';
+
         
     
 });

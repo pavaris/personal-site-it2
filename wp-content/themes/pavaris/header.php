@@ -27,7 +27,8 @@
                         <a id='contactPage' href="<?php echo home_url(); ?>/contact">Contact</a>
                     </div>
                 </div>
-                 <?php
+            </header>
+                             <?php
        $args = array(
            'post_type' => 'post',
        );
@@ -45,9 +46,4 @@
        <?php }
 
     ?> 
-           
-           
-           
-           
-            </header>
             <div id="container">
