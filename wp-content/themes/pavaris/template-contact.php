@@ -265,16 +265,39 @@
         $('.wpcf7').on('wpcf7:submit', function(event){
             console.log('submitted successfully');
             $('.submit').addClass('active');
+            $('.submit').removeClass('processing');
             $('.submit').html('SENT!');
         });
         $('.wpcf7').on('wpcf7:invalid', function(event){
            console.log('form no good');
            $('.errorMsg').addClass('active');
+            
         });
         
         
         $('.submit').click(function(){
-            console.log('begin submission');
+            formSubmit();
+            $(document).unbind('keypress');
+            $('#message-input').blur();
+            $('.submit').html('Sending');
+            $('.submit').addClass('processing');
+            
+        });
+        
+       $(document).keypress(function (e) {
+            if (e.which == 13) {
+                event.preventDefault();
+                formSubmit();    
+                $('.submit').html('Sending');
+                $('#message-input').blur();
+                $('.submit').unbind('click');
+                $('.submit').addClass('processing');
+            }
+       });
+    }
+    
+    function formSubmit(){
+         console.log('begin submission');
             formEmail = $('#email-input').val();
             formName = $('#name-input').val();
             formMessage = $('#message-input').val();    
@@ -290,9 +313,6 @@
                     $('.wpcf7-form').submit();
                 },300);
             }
-        })
-        
-        
     }
     
 </script>

@@ -4,7 +4,10 @@ var $ = jQuery.noConflict();
 $(document).ready(function(){
     $('#homePhotographyLink').click(function(){
         $('.photographyCont').addClass('active');
-        
+        $('.centerDescInfo').fadeOut(100);
+        setTimeout(function(){
+            $('.photoLoad').fadeIn();
+        },200);
         //replace with show loading icon:
         $( "#homeWebLink" ).unbind( "click");
         
@@ -20,6 +23,12 @@ $(document).ready(function(){
     
     $('#homeWebLink').click(function(){
         $('.webCont').addClass('active');
+        
+        $('.centerDescInfo').fadeOut(100);
+        setTimeout(function(){
+            $('.webLoad').fadeIn();
+        },200);
+        
         
         //replace with show loading icon:
         $( "#homePhotographyLink" ).unbind( "click");
@@ -90,7 +99,6 @@ function get_web_page(){
                     setTimeout(function(){
                         $('html, body').animate({scrollTop: $('.siteListContainer').offset().top - 300},600);
                     },500);
-                    
                 },500);
             },1000);
 
@@ -119,7 +127,7 @@ function get_photog_page(){
                 $('.webContentContainer').addClass('active');
             },700);            
             setTimeout(function(){
-                $('.centerDesc').html('');    
+                $('.centerDesc').html(''); 
                 $('.centerDesc').addClass('hide');  
             },1000);
 
@@ -181,7 +189,7 @@ function imgCheck(imgLoaded,images){
    if(imgLoaded == images){
       console.log('hiding load');
        $('.loadingScreen').hide();
-       $('.centerDesc svg').fadeOut();
+       $('.centerDesc .compiling').fadeOut();
        setTimeout(function(){
         $('.centerDescInfo').addClass('active');    
        },400);
@@ -194,7 +202,9 @@ function imgCheck(imgLoaded,images){
 
 var typeInterval;
 function startTypeOut(){
-     var nouns = ['a photographer.', 'a rock climber.', 'a videographer.', 'a traveler.', 'a swimmer.', 'a web developer.', 'a binge watcher.', 'a food enthusiast.', 'Pavaris.'];
+//     var nouns = ['a photographer.', 'a rock climber.', 'a videographer.', 'a traveler.', 'a swimmer.', 'a web developer.', 'a binge watcher.', 'a food enthusiast.', 'Pavaris.'];
+    
+    var nouns = [' take pictures.', '\'m a rock climber.', ' make videos.', ' am Pavaris.', '\'m a traveler.', '\'m a swimmer.', ' create websites.', '\'m a binge watcher.', ' am a food enthusiast.', ' am Pavaris.'];
           
       typeOut(nouns[0]);    
       console.log(nouns[0]);

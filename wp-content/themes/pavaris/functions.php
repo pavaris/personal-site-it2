@@ -135,7 +135,7 @@ function get_web_page(){ ?>
     
    <div class="webContentContainer">
     <div class="innerContent page-caption">
-        <h2>I create websites.</h2>
+        <h2>I create web experiences.</h2>
     </div>
     <div class="siteListContainer">
         <?php if(have_rows('sites',$pageID)){ ?>
@@ -197,6 +197,11 @@ function get_web_page(){ ?>
 //        alert(siteNum);
         $('.site').attr('site-num', siteNum).removeClass('active');
     });
+    
+    
+    setTimeout(function(){
+        $('html, body').animate({scrollTop: $('.siteListContainer').offset().top - 300},600);
+    },500);
 </script>
 <? }
 

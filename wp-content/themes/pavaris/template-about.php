@@ -21,10 +21,7 @@
         <div class="aboutPage">
 <!--          <div class="close">×</div> -->
           <div class="headerImage" style="background-image: url(<?php echo get_field('image', $pageID)['sizes']['medium_large']; ?>)"></div>
-            <div class="iAmContainer">
-                  I am 
-                <span class="noun"></span>
-                <span class='blinker'>|</span>
+            <div class="iAmContainer">I<span class="noun"></span><span class='blinker'>|</span>
             </div>
             <div class="aboutMe">
                 <?php echo get_post_field('post_content', $pageID); ?>

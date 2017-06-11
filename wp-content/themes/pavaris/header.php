@@ -19,9 +19,8 @@
                     <a href='<?php echo home_url(); ?>'><h3>Pavaris Ketavanan</h3></a>
                     <div class="headerLinks">
                         <div class="siteMode">
-                            <a id="photoHead" class="active">Photographer</a><span class="divider">|</span>
-                            <a id="webHead">Web Developer</a>
-                            <div class="underline"></div>
+                            <a id="photoHead" href="<?php echo home_url(); ?>/photography">Photographer</a><span class="divider">|</span>
+                            <a id="webHead" href="<?php echo home_url(); ?>/web" >Web Developer</a>
                         </div>
                         <a id='aboutPage' href="<?php echo home_url(); ?>/about" class='<?php  ?>'>About</a>
                         <a id='contactPage' href="<?php echo home_url(); ?>/contact">Contact</a>

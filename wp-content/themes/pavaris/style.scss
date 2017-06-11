@@ -99,7 +99,7 @@ a{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        overflow: hidden;
+//        overflow: hidden;
         position: relative;
         margin-right: 30px;
         a{
@@ -128,6 +128,7 @@ a{
     a{
         margin:0px 30px;
         font-size: 15px;
+        padding-bottom: 1px;
         position: relative;
         &:hover:after{
             bottom: -3px;
@@ -228,9 +229,12 @@ a{
     align-items: center;
     transition: 600ms all ease;
     
-    svg{
-        height: 100px;
-        width: 100px;
+    span{
+        font-weight: 200;
+    }
+    
+    .photoLoad, .webLoad{
+        display: none;
     }
     
     .centerDescInfo{
@@ -491,8 +495,8 @@ a{
     border-right: 0.5px solid rgba(0,0,0,0.4);
     a{
         overflow: hidden;
-        color: black;
-        font-weight: 200;
+        color: gray;
+        font-weight: 400;
         transition: ease 400ms all;
         position: relative;
         font-size: 14px;
@@ -998,7 +1002,6 @@ a{
             left:0;
             top: 0;
             transition: ease 500ms all;
-            background-color: mediumseagreen;
             position: absolute;
             
         }
@@ -1007,14 +1010,21 @@ a{
             color: white;
         }
     }
+    .submit.processing{
+        border:1px solid white;
+        &:before{
+            width: 50%;
+            background-color: khaki;
+        }
+    }
     .submit.active{
-//        background-color: mediumseagreen;
         color: white;
         border: 1px solid mediumseagreen;
         &:before{
             width: 100%;
-        }
-        
+            background-color: mediumseagreen;
+
+        }        
     }
 }
 .wpcf7{
